@@ -9,40 +9,44 @@
 </head>
 <body class="bg-slate-900 min-h-screen text-white">
   <div class="container mx-auto px-4 py-6 max-w-2xl">
-    <div class="mb-4">
+    <div class="mb-4 no-pdf">
       <a href="dashboard.html" class="text-slate-400 text-sm">← Назад в кабинет</a>
     </div>
 
-    <div class="text-center mb-6">
-      <div class="text-5xl mb-2">🎁</div>
-      <h1 class="text-2xl font-bold mb-2">Чек-лист 15 шагов</h1>
-      <p class="text-slate-400 text-sm">Цифровая гигиена на каждый день</p>
-    </div>
+    <!-- Всё что нужно в PDF оборачиваем в div -->
+    <div id="pdfContent">
+      <div class="text-center mb-6">
+        <div class="text-5xl mb-2">🎁</div>
+        <h1 class="text-2xl font-bold mb-2">Чек-лист 15 шагов</h1>
+        <p class="text-slate-400 text-sm">Цифровая гигиена на каждый день</p>
+      </div>
 
-    <div class="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4 mb-6">
-      <div class="flex items-start gap-3">
-        <div class="text-2xl">🎉</div>
-        <div>
-          <div class="font-semibold text-sm mb-1">Поздравляем, <span id="userName">друг</span>!</div>
-          <div class="text-xs text-slate-300">Вы прошли мастер-класс. Теперь у вас есть инструмент, чтобы не подписывать то, что не читаете.</div>
+      <div class="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4 mb-6">
+        <div class="flex items-start gap-3">
+          <div class="text-2xl">🎉</div>
+          <div>
+            <div class="font-semibold text-sm mb-1">Поздравляем, <span id="userName">друг</span>!</div>
+            <div class="text-xs text-slate-300">Вы прошли мастер-класс. Теперь у вас есть инструмент, чтобы не подписывать то, что не читаете.</div>
+          </div>
         </div>
       </div>
+
+      <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 mb-6">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm">Выполнено:</span>
+          <span class="text-cyan-400 font-bold" id="progressText">0 / 15</span>
+        </div>
+        <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden">
+          <div id="progressBar" class="bg-cyan-500 h-full transition-all" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div id="checklistContainer"></div>
     </div>
 
-    <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 mb-6 sticky top-2 z-10">
-      <div class="flex justify-between items-center mb-2">
-        <span class="text-sm">Выполнено:</span>
-        <span class="text-cyan-400 font-bold" id="progressText">0 / 15</span>
-      </div>
-      <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden">
-        <div id="progressBar" class="bg-cyan-500 h-full transition-all" style="width: 0%"></div>
-      </div>
-    </div>
-
-    <div id="checklistContainer"></div>
-
-    <div class="mt-8 space-y-3">
+    <div class="mt-8 space-y-3 no-pdf">
       <button onclick="savePDF()"
+              id="pdfBtn"
               class="w-full bg-cyan-500 hover:bg-cyan-400 text-white font-semibold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2">
         📥 Скачать PDF
       </button>
@@ -53,9 +57,8 @@
     </div>
   </div>
 
-  <!-- Библиотека для генерации PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <!-- Свои скрипты -->
   <script src="js/storage.js"></script>
   <script src="js/main.js"></script>
   <script src="js/checklist.js"></script>
