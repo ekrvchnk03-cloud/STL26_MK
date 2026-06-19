@@ -1,12 +1,13 @@
 // Логика опроса
-
 document.addEventListener('DOMContentLoaded', function() {
   const user = requireUser();
   if (!user) return;
 
   // Если опрос уже пройден — сразу показываем результат
   if (Storage.getProgress().poll) {
-    showResult();
+    // ✅ Читаем сохранённый ответ
+    const savedAnswer = localStorage.getItem('pollAnswer');
+    showResult(savedAnswer);
   }
 });
 
@@ -42,6 +43,9 @@ function submitPoll() {
   const answer = document.getElementById('submitBtn').dataset.answer;
   if (!answer) return;
 
+  // ✅ Сохраняем ответ пользователя
+  localStorage.setItem('pollAnswer', answer);
+
   Storage.setPollComplete();
   showResult(answer);
 }
@@ -56,7 +60,6 @@ function showResult(userAnswer) {
     const isUser = key === userAnswer;
     const barColor = isUser ? 'bg-cyan-500' : 'bg-slate-600';
     const textColor = isUser ? 'text-cyan-400 font-bold' : 'text-slate-300';
-
     html += `
       <div>
         <div class="flex justify-between text-sm mb-1">
@@ -70,6 +73,5 @@ function showResult(userAnswer) {
     `;
   }
   html += '</div>';
-
   document.getElementById('statsContainer').innerHTML = html;
 }
