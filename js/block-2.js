@@ -1,23 +1,5 @@
 // ===== Блок 2: Cookie-баннер =====
 
-// --- Безопасное завершение блока ---
-function safeCompleteBlock(n) {
-  try {
-    if (typeof completeBlock === 'function') {
-      completeBlock(n);
-    } else if (typeof Storage !== 'undefined' && typeof Storage.setBlockComplete === 'function') {
-      Storage.setBlockComplete(n);
-    } else {
-      // Fallback — сохраняем напрямую в localStorage
-      var key = 'block_' + n + '_complete';
-      localStorage.setItem(key, 'true');
-      console.log('Блок ' + n + ' завершён (fallback)');
-    }
-  } catch (e) {
-    console.warn('Не удалось сохранить прогресс:', e);
-  }
-}
-
 // --- Утилиты модалок ---
 function showBlock2Modal(id) {
   var m = document.getElementById(id);
@@ -49,7 +31,7 @@ function handleReject() {
     '<li>• Нашли скрытую опцию «Отклонить»</li>' +
     '<li>• Защитили свою приватность</li>';
   showBlock2Modal('goodChoiceModal');
-  safeCompleteBlock(2);
+  Storage.setBlockComplete(2);
 }
 
 // --- Кнопка «Настройки» ---
@@ -80,7 +62,7 @@ function saveSettings() {
     document.getElementById('settingsResult').textContent =
       'Вы сняли часть галочек — уже неплохо! Но вы оставили ' + still + '. В идеале лучше отключать все необязательные cookies.';
     showBlock2Modal('settingsResultModal');
-    safeCompleteBlock(2);
+    Storage.setBlockComplete(2);
     return;
   }
 
@@ -93,7 +75,7 @@ function saveSettings() {
     '<li>• Сняли ненужные разрешения</li>' +
     '<li>• Защитили свою приватность</li>';
   showBlock2Modal('goodChoiceModal');
-  safeCompleteBlock(2);
+  Storage.setBlockComplete(2);
 }
 
 // --- Попробовать снова ---
