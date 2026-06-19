@@ -1,111 +1,105 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="регистрации.
+<head>и
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Интернет-гигиена</title>
+<script ://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gradient-to-br from-slate-900 viasrc="https-slate-800 to-slate-900 min-h-screen text-white">
 
----
+<div class="container mx-auto px-4 py-8 max-w-md">
 
-##UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Интернет-гигиена — Мастер-класс</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" 
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen text-white">
+<div class="text-center mb-8 pt-8">
+<div class="text-5xl mb-3">🔐</div>
+<h1 class="text-3xl font-bold mb-2">Интернет-гигиена</h1>
+<p class="text-slate-400">Как не подписывать то, что не читаешь</p>
+</div>
 
-    <div class="containerhref="css/style.css">
-</head> mx-auto px-4 py-8 max-w-md">
-        
-        <div class="text-center mb-8 pt-8">
-            <div class="text-5xl mb-3">🔐</div>
-            <h1 class="text-3xl font-bold mb-2">Интернет-гигиена</h1>
-            <p class="text-slate-400">Как не подписывать то, что не читаешь</p>
-        </div>
+<div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
+<h2 class="text-xl font-semibold mb-2">Регистрация на мастер-класс</h2>
+<p class="text-slate-400 text-sm mb-6">Заполните форму, чтобы получить доступ к интерактивным заданиям</p>
 
-        <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
-            <h2 class="text-xl font-semibold mb-2">Регистрация на мастер-класс</h2>
-            <p class="text-slate-400 text-sm mb-6">Заполните форму, чтобы получить доступ к интерактивным заданиям</p>
+<form id="regForm" class="space-y-4">
 
-            <form id="regForm" class="space-y-4">
-                
-                <div>
-                    <label class="block text-sm text-slate-300 mb-1">Фамилия и имя</label>
-                    <input type="text" id="name" required placeholder="Иван Иванов" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition">
-                </div>
+<div>
+<label class="block text-sm text-slate-300 mb-1">Фамилия и имя</label>
+<input type="text" id="name" required placeholder="Иван Иванов" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition">
+</div>
 
-                <div>
-                    <label class="block text-sm text-slate-300 mb-1">Email</label>
-                    <input type="email" id="email" required placeholder="example@mail.ru" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition">
-                </div>
+<div>
+<label class="block text-sm text-slate-300 mb-1">Email</label>
+<input type="email" id="email" required placeholder="example@mail.ru" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition">
+</div>
 
-                <div>
-                    <label class="block text-sm text-slate-300 mb-1">Телефон</label>
-                    <input type="tel" id="phone" required placeholder="+7 (999) 123-45-67" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition">
-                </div>
+<div>
+<label class="block text-sm text-slate-300 mb-1">Телефон</label>
+<input type="tel" id="phone" required placeholder="+7 (999) 123-45-67" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition">
+</div>
 
-                <div class="bg-slate-900 rounded-lg p-4 border border-slate-700 mt-6">
-                    <label class="flex items-start gap-3 cursor-pointer">
-                        <input type="checkbox" id="agree" required class="mt-1 w-5 h-5 accent-cyan-500 flex-shrink-0 cursor-pointer">
-                        <span class="text-sm text-slate-300">
-                            Я согласен с 
-                            <button type="button" onclick="openAgreement()" class="text-cyan-400 underline hover:text-cyan-300">условиями пользовательского соглашения</button>
-                            и даю согласие на обработку персональных данных
-                        </span>
-                    </label>
-                </div>
+<div class="bg-slate-900 rounded-lg p-4 border border-slate-700 mt-6">
+<label class="flex items-start gap-3 cursor-pointer">
+<input type="checkbox" id="agree" required class="mt-1 w-5 h-5 accent-cyan-500 flex-shrink-0 cursor-pointer">
+<span class="text-sm text-slate-300">
+Я согласен с
+<button type="button" onclick="openAgreement()" class="text-cyan-400 underline hover:text-cyan-300">условиями пользовательского соглашения</button>
+и даю согласие на обработку персональных данных
+</span>
+</label>
+</div>
 
-                <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition transform hover:scale-[1.02] mt-6">
-                    Зарегистрироваться →
-                </button>
-            </form>
-        </div>
+<button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition mt-6">
+Зарегистрироваться →
+</button>
+</form>
+</div>
 
-        <p class="text-center text-slate-500 text-xs mt-6">
-            Это учебный сайт для мастер-класса. Данные не передаются третьим лицам.
-        </p>
-    </div>
+<p class="text-center text-slate-500 text-xs mt-6">
+Это учебный сайт для мастер-класса. Данные не передаются третьим лицам.
+</p>
+</div>
 
-    <div id="agreementModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center p-4 z-50">
-        <div class="bg-slate-800 rounded-xl max-w-2xl w-full max-h-[85vh] flex flex-col border border-slate-700">
-            <div class="flex justify-between items-center p-4 border-b border-slate-700">
-                <h3 class="text-lg font-semibold">Пользовательское соглашение</h3>
-                <button onclick="closeAgreement()" class="text-slate-400 hover:text-white text-2xl leading-none">&times;</button>
-            </div>
-            <div id="agreementContent" class="overflow-auto p-6 text-sm text-slate-300 leading-relaxed"></div>
-            <div class="p-4 border-t border-slate-700">
-                <button onclick="closeAgreement()" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 rounded-lg transition">Закрыть</button>
-            </div>
-        </div>
-    </div>
+<div id="agreementModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center p-4 z-50">
+<div class="bg-slate-800 rounded-xl max-w-2xl w-full max-h-[85vh] flex flex-col border border-slate-700">
+<div class="flex justify-between items-center p-4 border-b border-slate-700">
+<h3 class="text-lg font-semibold">Пользовательское соглашение</h3>
+<button onclick="closeAgreement()" class="text-slate-400 hover:text-white text-2xl leading-none">&times;</button>
+</div>
+<div id="agreementContent" class="overflow-auto p-6 text-sm text-slate-300 leading-relaxed"></div>
+<div class="p-4 border-t border-slate-700">
+<button onclick="closeAgreement()" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 rounded-lg transition">Закрыть</button>
+</div>
+</div>
+</div>
 
-    <script src="js/storage.js"></script>
-    <script src="js/agreement.js"></script>
-    <script>
-        function openAgreement() {
-            document.getElementById('agreementContent').innerHTML = AGREEMENT_TEXT;
-            const modal = document.getElementById('agreementModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
+<script src="js/storage.js"></script>
+<script src="js/agreement.js"></script>
+<script>
+function openAgreement() {
+  document.getElementById('agreementContent').innerHTML = AGREEMENT_TEXT;
+  const modal = document.getElementById('agreementModal');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
 
-        function closeAgreement() {
-            const modal = document.getElementById('agreementModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
+function closeAgreement() {
+  const modal = document.getElementById('agreementModal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+}
 
-        document.getElementById('regForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const user = {
-                name: document.getElementById('name').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                phone: document.getElementById('phone').value.trim(),
-                registered_at: new Date().toISOString()
-            };
-            
-            Storage.saveUser(user);
-            window.location.href = 'dashboard.html';
-        });
-    </script>
+document.getElementById('regForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const user = {
+    name: document.getElementById('name').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    registered_at: new Date().toISOString()
+  };
+  Storage.saveUser(user);
+  window.location.href = 'dashboard.html';
+});
+</script>
 </body>
 </html>
