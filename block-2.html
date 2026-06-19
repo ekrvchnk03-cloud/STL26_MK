@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Razхdel 2</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" 
+</head>
+<body class="bg-slate-900 min-h-screen text-white">
+  <div class="container mx-auto px-4 py-6 max-w-2href="css/style.css">xl">
+
+    <div class="mb-4">
+      <a href="dashboard.html" class="text-slate-400 text-sm hover:text-cyan-400">← Назад в кабинет</a>
+    </div>
+
+    <div class="text-center mb-6">
+      <div class="text-4xl mb-2">🍪</div>
+      <h1 class="text-2xl font-bold mb-2">Раздел 2. Cookie-баннер</h1>
+      <p class="text-slate-400 text-sm">Сделай правильный выбор</p>
+    </div>
+
+    <div id="alreadyDone" class="bg-green-900/30 border border-green-700/50 rounded-lg p-3 mb-4 hidden">
+      <div class="text-sm">Вы уже проходили. Можно пройти снова.</div>
+    </div>
+
+    <div class="bg-slate-800 rounded-xl p-5 border border-slate-700 mb-6">
+      <h2 class="font-semibold mb-2">Что происходит?</h2>
+      <p class="text-sm text-slate-300">Вы заходите на сайт и видите типичный cookie-баннер. Какую кнопку выберете?</p>
+    </div>
+
+    <!-- Cookie-баннер -->
+    <div id="cookieBanner" class="bg-white text-slate-800 rounded-xl p-5 shadow-2xl border-4 border-yellow-400">
+      <div class="flex items-start gap-3 mb-4">
+        <div class="text-3xl">🍪</div>
+        <div class="flex-1">
+          <h3 class="font-bold text-base mb-1">Мы заботимся о вашем удобстве</h3>
+          <p class="text-xs text-slate-600">Наш сайт использует cookies, чтобы сделать ваш опыт лучше. Мы и наши 247 партнёров используем cookies для персонализации рекламы, аналитики и улучшения сайта.</p>
+        </div>
+      </div>
+      <button onclick="handleAcceptAll()" class="w-full bg-green-500 hover:bg-green-600 transition text-white font-bold py-3 px-6 rounded-lg text-base mb-2">
+        Принять все cookies
+      </button>
+      <div class="flex justify-center gap-4 mt-2">
+        <button onclick="handleSettings()" class="text-xs text-slate-500 underline hover:text-slate-700 transition">Настройки</button>
+        <button onclick="handleReject()" class="text-xs text-slate-400 underline hover:text-slate-700 transition">Отклонить</button>
+      </div>
+    </div>
+
+    <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 mt-6">
+      <div class="text-sm text-slate-300">💡 Подсказка: «Принять все» — самая яркая кнопка. Это и есть тёмный паттерн.</div>
+    </div>
+
+  </div>
+
+  <!-- Модалка плохого выбора -->
+  <div id="badChoiceModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center p-4 z-50">
+    <div class="bg-slate-800 rounded-xl max-w-md w-full border border-red-500/50">
+      <div class="p-6 text-center">
+        <div class="text-5xl mb-3">⚠️</div>
+        <h3 class="text-xl font-bold mb-3">Вы попались на тёмный паттерн</h3>
+        <p class="text-sm text-slate-300 mb-4">Нажав «Принять все», вы разрешили 247 партнёрам отслеживать вас: какие сайты посещаете, что покупаете, где находитесь.</p>
+        <div class="bg-slate-900 rounded-lg p-3 mb-4 text-left">
+          <p class="text-xs text-slate-400 mb-1">Как правильно:</p>
+          <ul class="text-xs text-slate-300 space-y-1">
+            <li>• Жми «Отклонить» или «Только необходимые»</li>
+            <li>• Или открывай «Настройки» и отключай лишнее</li>
+            <li>• Большая зелёная кнопка всегда подозрительна</li>
+          </ul>
+        </div>
+        <button onclick="tryAgain()" class="w-full bg-cyan-500 hover:bg-cyan-600 transition text-white font-semibold py-2 rounded-lg">Попробовать ещё раз</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модалка хорошего выбора -->
+  <div id="goodChoiceModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center p-4 z-50">
+    <div class="bg-slate-800 rounded-xl max-w-md w-full border border-green-500/50">
+      <div class="p-6 text-center">
+        <div class="text-5xl mb-3">🎉</div>
+        <h3 class="text-xl font-bold mb-3">Отличный выбор!</h3>
+        <p class="text-sm text-slate-300 mb-4">Вы отказались от необязательных cookies. Сайт по-прежнему будет работать, но 247 партнёров не будут вас отслеживать.</p>
+        <div class="bg-slate-900 rounded-lg p-3 mb-4 text-left">
+          <p class="text-xs text-slate-400 mb-1">Что вы сделали правильно:</p>
+          <ul class="text-xs text-slate-300 space-y-1">
+            <li>• Не повелись на яркую кнопку</li>
+            <li>• Нашли скрытую опцию «Отклонить»</li>
+            <li>• Защитили свою приватность</li>
+          </ul>
+        </div>
+        <div class="space-y-2">
+          <button onclick="goToNextBlock()" class="w-full bg-cyan-500 hover:bg-cyan-600 transition text-white font-semibold py-2 rounded-lg">К разделу 3</button>
+          <button onclick="goToDashboard()" class="w-full bg-slate-700 hover:bg-slate-600 transition text-white font-semibold py-2 rounded-lg">В кабинет</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модалка настроек -->
+  <div id="settingsModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center p-4 z-50">
+    <div class="bg-slate-800 rounded-xl max-w-md w-full border border-slate-700">
+      <div class="p-6">
+        <h3 class="text-lg font-bold mb-4">Настройки cookies</h3>
+        <div class="space-y-3 mb-6">
+          <div class="bg-slate-900 rounded-lg p-3 opacity-60">
+            <label class="flex items-center justify-between">
+              <div>
+                <div class="font-medium text-sm">Необходимые</div>
+                <div class="text-xs text-slate-400">Без них сайт не работает</div>
+              </div>
+              <input type="checkbox" checked disabled class="w-5 h-5">
+            </label>
+          </div>
+          <div class="bg-slate-900 rounded-lg p-3">
+            <label class="flex items-center justify-between cursor-pointer">
+              <div>
+                <div class="font-medium text-sm">Аналитика</div>
+                <div class="text-xs text-slate-400">Сбор статистики о посещениях</div>
+              </div>
+              <input type="checkbox" id="cookieAnalytics" class="w-5 h-5 accent-cyan-500">
+            </label>
+          </div>
+          <div class="bg-slate-900 rounded-lg p-3">
+            <label class="flex items-center justify-between cursor-pointer">
+              <div>
+                <div class="font-medium text-sm">Реклама</div>
+                <div class="text-xs text-slate-400">Персонализированная реклама</div>
+              </div>
+              <input type="checkbox" id="cookieMarketing" class="w-5 h-5 accent-cyan-500">
+            </label>
+          </div>
+        </div>
+        <button onclick="saveSettings()" class="w-full bg-cyan-500 hover:bg-cyan-600 transition text-white font-semibold py-2 rounded-lg">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модалка результата настроек -->
+  <div id="settingsResultModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center p-4 z-50">
+    <div class="bg-slate-800 rounded-xl max-w-md w-full border border-cyan-500/50">
+      <div class="p-6 text-center">
+        <div class="text-5xl mb-3">⚙️</div>
+        <h3 class="text-xl font-bold mb-3">Настройки сохранены</h3>
+        <p class="text-sm text-slate-300 mb-4" id="settingsResult"></p>
+        <div class="space-y-2">
+          <button onclick="goToNextBlock()" class="w-full bg-cyan-500 hover:bg-cyan-600 transition text-white font-semibold py-2 rounded-lg">К разделу 3</button>
+          <button onclick="goToDashboard()" class="w-full bg-slate-700 hover:bg-slate-600 transition text-white font-semibold py-2 rounded-lg">В кабинет</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/block-2.js"></script>
+</body>
+</html>
