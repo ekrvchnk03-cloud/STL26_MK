@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opros</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-900 min-h-screen text-white">
+  <div class="container mx-auto px-4 py-8 max-w-md">
+
+    <div class="mb-6">
+      <a href="dashboard.html" class="text-slate-400 text-sm">← Назад</a>
+    </div>
+
+    <div class="text-center mb-8">
+      <div class="text-5xl mb-3">📊</div>
+      <h1 class="text-2xl font-bold mb-2">Честный опрос</h1>
+      <p class="text-slate-400 text-sm">Только между нами</p>
+    </div>
+
+    <!-- Блок с вопросом -->
+    <div id="pollQuestion" class="bg-slate-800 rounded-2xl p-6 border border-slate-700">
+      <h2 class="text-lg font-semibold mb-4">Читаете ли вы соглашения перед галочкой «Согласен»?</h2>
+
+      <div class="space-y-3 mb-6">
+        <div class="poll-option border-2 border-slate-700 rounded-lg p-4 cursor-pointer transition hover:border-cyan-500" data-value="always" onclick="selectAnswer('always')">
+          <div class="font-medium">Всегда читаю полностью</div>
+          <div class="text-xs text-slate-400">Каждую строчку</div>
+        </div>
+        <div class="poll-option border-2 border-slate-700 rounded-lg p-4 cursor-pointer transition hover:border-cyan-500" data-value="long" onclick="selectAnswer('long')">
+          <div class="font-medium">Читаю, если короткое</div>
+          <div class="text-xs text-slate-400">Меньше страницы</div>
+        </div>
+        <div class="poll-option border-2 border-slate-700 rounded-lg p-4 cursor-pointer transition hover:border-cyan-500" data-value="rarely" onclick="selectAnswer('rarely')">
+          <div class="font-medium">Иногда пролистываю</div>
+          <div class="text-xs text-slate-400">По диагонали</div>
+        </div>
+        <div class="poll-option border-2 border-slate-700 rounded-lg p-4 cursor-pointer transition hover:border-cyan-500" data-value="never" onclick="selectAnswer('never')">
+          <div class="font-medium">Никогда не читаю</div>
+          <div class="text-xs text-slate-400">Просто ставлю галочку</div>
+        </div>
+      </div>
+
+      <button id="submitBtn" onclick="submitPoll()" disabled
+              class="w-full bg-cyan-500 hover:bg-cyan-400 disabled:bg-slate-700 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition">
+        Узнать результат
+      </button>
+    </div>
+
+    <!-- Блок с результатами -->
+    <div id="pollResult" class="bg-slate-800 rounded-2xl p-6 border border-slate-700 hidden">
+      <h2 class="text-lg font-semibold mb-2">Вот что отвечают другие:</h2>
+      <p class="text-slate-400 text-sm mb-6">По 1000+ участников</p>
+
+      <div id="statsContainer"></div>
+
+      <div class="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-4 mt-6">
+        <div class="text-sm text-slate-200">
+          91% людей не читают соглашения. А там может быть что угодно. Проверим в следующем разделе.
+        </div>
+      </div>
+
+      <a href="dashboard.html"
+         class="block w-full text-center bg-cyan-500 hover:bg-cyan-400 text-white font-semibold py-3 px-6 rounded-lg mt-6 transition">
+        Вернуться в кабинет
+      </a>
+    </div>
+
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/poll.js"></script>
+</body>
+</html>
