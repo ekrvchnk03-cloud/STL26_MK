@@ -1,5 +1,3 @@
-// Логика чек-листа
-
 const CHECKLIST_ITEMS = [
   { cat: 'Пароли и аккаунты', text: 'Включите двухфакторную аутентификацию (2FA) на главных аккаунтах' },
   { cat: 'Пароли и аккаунты', text: 'Используйте менеджер паролей (Bitwarden, 1Password)' },
@@ -58,7 +56,6 @@ function renderChecklist() {
     });
     html += '</div>';
   }
-
   container.innerHTML = html;
 }
 
@@ -91,8 +88,139 @@ function updateProgress() {
   document.getElementById('progressBar').style.width = `${(done / total) * 100}%`;
 }
 
-function printChecklist() {
-  window.print();
+// Загрузка шрифта для кириллицы в PDF
+async function loadFont() {
+  const url = 'https://cdn.jsdelivr.net/gh/nicholasgasior/gfonts-base64/fonts/roboto/Roboto-Regular-normal.js';
+  
+  // Пробуем загрузить готовый base64 шрифт
+  // Если не получится — используем fallback через fetch ttf
+  const ttfUrl = 'https://cdn.jsdelivr.net/fontsource/fonts/roboto@latest/cyrillic-400-normal.ttf';
+  
+  const response = await fetch(ttfUrl);
+  const buffer = await response.arrayBuffer();
+  
+  // Конвертируем ArrayBuffer в base64
+  const bytes = new Uint8Array(buffer);
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
+}
+
+async function savePDF() {
+  const btn = document.querySelector('[onclick="savePDF()"]');
+  btn.disabled = true;
+  btn.textContent = '⏳ Генерация PDF...';
+
+  try {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4'
+    });
+
+    // Загружаем и подключаем кириллический шрифт
+    const fontBase64 = await loadFont();
+    doc.addFileToVFS('Roboto-Regular.ttf', fontBase64);
+    doc.addFont('Roboto-Regular.ttf', 'Roboto', 'normal');
+    doc.setFont('Roboto');
+
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const margin = 15;
+    const maxWidth = pageWidth - margin * 2;
+    let y = 20;
+
+    // Заголовок
+    doc.setFontSize(20);
+    doc.setTextColor(0, 188, 212);
+    doc.text('Чек-лист: 15 шагов', pageWidth / 2, y, { align: 'center' });
+    y += 8;
+
+    doc.setFontSize(10);
+    doc.setTextColor(150, 150, 150);
+    doc.text('Цифровая гигиена на каждый день', pageWidth / 2, y, { align: 'center' });
+    y += 12;
+
+    // Прогресс
+    const total = CHECKLIST_ITEMS.length;
+    const done = document.querySelectorAll('.checklist-item:checked').length;
+    doc.setFontSize(11);
+    doc.setTextColor(0, 188, 212);
+    doc.text('Выполнено: ' + done + ' / ' + total, margin, y);
+    y += 10;
+
+    // Группировка
+    const categories = {};
+    CHECKLIST_ITEMS.forEach((item, idx) => {
+      if (!categories[item.cat]) categories[item.cat] = [];
+      categories[item.cat].push({ ...item, idx });
+    });
+
+    const checkedSet = new Set();
+    document.querySelectorAll('.checklist-item').forEach(el => {
+      if (el.checked) checkedSet.add(parseInt(el.dataset.idx));
+    });
+
+    for (const cat in categories) {
+      if (y > 265) {
+        doc.addPage();
+        y = 20;
+      }
+
+      // Категория
+      doc.setFontSize(12);
+      doc.setTextColor(0, 188, 212);
+      doc.text(cat.toUpperCase(), margin, y);
+      y += 7;
+
+      // Пункты
+      doc.setFontSize(10);
+      categories[cat].forEach(item => {
+        if (y > 275) {
+          doc.addPage();
+          y = 20;
+        }
+
+        const isChecked = checkedSet.has(item.idx);
+        const checkbox = isChecked ? '[V]' : '[   ]';
+
+        if (isChecked) {
+          doc.setTextColor(0, 160, 0);
+        } else {
+          doc.setTextColor(60, 60, 60);
+        }
+
+        const line = checkbox + '  ' + item.text;
+        const lines = doc.splitTextToSize(line, maxWidth);
+        doc.text(lines, margin, y);
+        y += lines.length * 5 + 2;
+      });
+
+      y += 4;
+    }
+
+    // Футер
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+    y += 5;
+    doc.setFontSize(9);
+    doc.setTextColor(150, 150, 150);
+    doc.text('Сгенерировано: ' + new Date().toLocaleDateString('ru-RU'), margin, y);
+
+    // Скачивание
+    doc.save('checklist-15-shagov.pdf');
+
+  } catch (error) {
+    console.error('Ошибка генерации PDF:', error);
+    alert('Не удалось создать PDF. Попробуйте ещё раз.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '📥 Скачать PDF';
+  }
 }
 
 function goToDashboard() {
