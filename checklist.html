@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chek-list</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-900 min-h-screen text-white">
+  <div class="container mx-auto px-4 py-6 max-w-2xl">
+    <div class="mb-4">
+      <a href="dashboard.html" class="text-slate-400 text-sm">Назад в кабинет</a>
+    </div>
+    <div class="text-center mb-6">
+      <div class="text-5xl mb-2">🎁</div>
+      <h1 class="text-2xl font-bold mb-2">Чек-лист 15 шагов</h1>
+      <p class="text-slate-400 text-sm">Цифровая гигиена на каждый день</p>
+    </div>
+    <div class="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4 mb-6">
+      <div class="flex items-start gap-3">
+        <div class="text-2xl">🎉</div>
+        <div>
+          <div class="font-semibold text-sm mb-1">Поздравляем, <span id="userName">друг</span>!</div>
+          <div class="text-xs text-slate-300">Вы прошли мастер-класс. Теперь у вас есть инструмент, чтобы не подписывать то, что не читаете.</div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 mb-6 sticky top-2 z-10">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm">Выполнено:</span>
+        <span class="text-cyan-400 font-bold" id="progressText">0 / 15</span>
+      </div>
+      <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden">
+        <div id="progressBar" class="bg-cyan-500 h-full transition-all" style="width: 0%"></div>
+      </div>
+    </div>
+    <div id="checklistContainer"></div>
+    <div class="bg-slate-800 rounded-xl p-5 border border-slate-700 mt-8">
+      <h3 class="font-semibold mb-3">Сохраните на потом</h3>
+      <div class="space-y-2">
+        <button onclick="printChecklist()" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-3 rounded-lg">
+          🖨 Распечатать или сохранить в PDF
+        </button>
+        <button onclick="goToDashboard()" class="w-full bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2 rounded-lg">
+          В кабинет
+        </button>
+      </div>
+    </div>
+    <div class="text-center text-slate-500 text-xs mt-8 pb-4">
+      Прогресс сохраняется автоматически
+    </div>
+  </div>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/checklist.js"></script>
+</body>
+</html>
