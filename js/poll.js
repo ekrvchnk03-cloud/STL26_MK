@@ -1,12 +1,19 @@
-// Логика опроса
+// poll.js — полный файл, замени целиком
+
 document.addEventListener('DOMContentLoaded', function() {
   const user = requireUser();
   if (!user) return;
 
-  // Если опрос уже пройден — сразу показываем результат
   if (Storage.getProgress().poll) {
     // ✅ Читаем сохранённый ответ
     const savedAnswer = localStorage.getItem('pollAnswer');
+    
+    // ✅ Если ответ не сохранён (старая версия) — сбрасываем опрос
+    if (!savedAnswer) {
+      // Даём пройти заново, чтобы ответ сохранился
+      return;
+    }
+    
     showResult(savedAnswer);
   }
 });
@@ -43,9 +50,9 @@ function submitPoll() {
   const answer = document.getElementById('submitBtn').dataset.answer;
   if (!answer) return;
 
-  // ✅ Сохраняем ответ пользователя
+  // ✅ Сохраняем ответ
   localStorage.setItem('pollAnswer', answer);
-
+  
   Storage.setPollComplete();
   showResult(answer);
 }
@@ -57,13 +64,13 @@ function showResult(userAnswer) {
   let html = '<div class="space-y-3">';
   for (const key in POLL_STATS) {
     const percent = POLL_STATS[key];
-    const isUser = key === userAnswer;
+    const isUser = (key === userAnswer);
     const barColor = isUser ? 'bg-cyan-500' : 'bg-slate-600';
     const textColor = isUser ? 'text-cyan-400 font-bold' : 'text-slate-300';
     html += `
       <div>
         <div class="flex justify-between text-sm mb-1">
-          <span class="${textColor}">${POLL_LABELS[key]} ${isUser ? '← ваш ответ' : ''}</span>
+          <span class="${textColor}">${POLL_LABELS[key]}${isUser ? ' ← ваш ответ' : ''}</span>
           <span class="${textColor}">${percent}%</span>
         </div>
         <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden">
