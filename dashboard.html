@@ -1,138 +1,131 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">`dashbo
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет — </title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF**ВСЁ-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Личный кабинет</title>
+<script ss.com"></script>
+<link rel="stylesheet" href="css/style.css">
 </head>
-<body classИнтернет-гигиена="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen text-white">
+<body class="bg-slate-900 min-h-screen text-white">
 
-    <div class="container mx-auto px-4 py-8 max-w-2xl">
-        
-        <!-- Шапка -->
-        <div class="flex justify-between items-center mb-6">
-            <div>
-                <h1 class="text-2xl font-bold" id="userGreeting">Привет!</h1>
-                <p class="text-slate-400 text-sm">Добро пожаловать в личный кабинет</p>
-            </div>
-            <button onclick="logout()" class="text-slate-400 hover:text-white text-sm transition">
-                Выйти
-            </button>
-        </div>
+<div class="container mx-ausrc="https://cdn.tailwindcto px-4 py-8 max-w-2xl">
 
-        <!-- Карточка прогресса -->
-        <div class="bg-gradient-to-br from-cyan-900/40 to-blue-900/40 rounded-xl p-5 border border-cyan-500/30 mb-6">
-            <div class="flex justify-between items-center mb-3">
-                <div>
-                    <div class="text-sm text-slate-300 mb-1">Прогресс мастер-класса</div>
-                    <div class="text-2xl font-bold" id="progressCount">0 / 3</div>
-                </div>
-                <div class="text-4xl">🎯</div>
-            </div>
-            <div class="w-full bg-slate-900/50 rounded-full h-2 overflow-hidden">
-                <div id="progressBar" class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full transition-all duration-500" style="width: 0%"></div>
-            </div>
-        </div>
+<div class="flex justify-between items-center mb-6">
+<div>
+<h1 class="text-2xl font-bold" id="userGreeting">Привет!</h1>
+<p class="text-slate-400 text-sm">Добро пожаловать в личный кабинет</p>
+</div>
+<button onclick="logout()" class="text-slate-400 hover:text-white text-sm">
+Выйти
+</button>
+</div>
 
-        <!-- Опрос -->
-        <div id="pollCard" class="bg-slate-800 rounded-xl p-5 border border-slate-700 mb-4 hover:border-slate-600 transition">
-            <div class="flex justify-between items-start mb-3">
-                <div class="flex items-center gap-3">
-                    <span class="text-3xl">📊</span>
-                    <div>
-                        <h3 class="font-semibold">Честный опрос</h3>
-                        <p class="text-xs text-slate-400">Читаете ли вы соглашения?</p>
-                    </div>
-                </div>
-                <div class="status-badge">
-                    <span class="text-cyan-400 text-xs">● Доступно</span>
-                </div>
-            </div>
-            <a href="poll.html" class="action-btn block w-full text-center bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg transition text-sm">
-                Пройти опрос →
-            </a>
-        </div>
+<div class="bg-cyan-900/40 rounded-xl p-5 border border-cyan-500/30 mb-6">
+<div class="flex justify-between items-center mb-3">
+<div>
+<div class="text-sm text-slate-300 mb-1">Прогресс мастер-класса</div>
+<div class="text-2xl font-bold" id="progressCount">0 / 3</div>
+</div>
+<div class="text-4xl">🎯</div>
+</div>
+<div class="w-full bg-slate-900/50 rounded-full h-2 overflow-hidden">
+<div id="progressBar" class="bg-cyan-500 h-full transition-all duration-500" style="width: 0%"></div>
+</div>
+</div>
 
-        <!-- Заголовок разделов -->
-        <h2 class="text-lg font-semibold mb-3 mt-6">Разделы мастер-класса</h2>
+<div id="pollCard" class="bg-slate-800 rounded-xl p-5 border border-slate-700 mb-4">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<span class="text-3xl">📊</span>
+<div>
+<h3 class="font-semibold">Честный опрос</h3>
+<p class="text-xs text-slate-400">Читаете ли вы соглашения?</p>
+</div>
+</div>
+<div class="status-badge">
+<span class="text-cyan-400 text-xs">● Доступно</span>
+</div>
+</div>
+<a href="poll.html" class="action-btn block w-full text-center bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg text-sm">
+Пройти опрос
+</a>
+</div>
 
-        <!-- Раздел 1 -->
-        <div id="block1Card" class="bg-slate-800 rounded-xl p-5 border border-slate-700 mb-4 hover:border-slate-600 transition">
-            <div class="flex justify-between items-start mb-3">
-                <div class="flex items-center gap-3">
-                    <span class="text-3xl">📄</span>
-                    <div>
-                        <h3 class="font-semibold">1. Лицензия, которую мы бы все подписали</h3>
-                        <p class="text-xs text-slate-400">Найди 3 подвоха в соглашении</p>
-                    </div>
-                </div>
-                <div class="status-badge">
-                    <span class="text-cyan-400 text-xs">● Доступно</span>
-                </div>
-            </div>
-            <button onclick="goToBlock(1)" class="action-btn w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg transition text-sm">
-                Начать →
-            </button>
-        </div>
+<h2 class="text-lg font-semibold mb-3 mt-6">Разделы мастер-класса</h2>
 
-        <!-- Раздел 2 -->
-        <div id="block2Card" class="bg-slate-800 rounded-xl p-5 border border-slate-700 mb-4 hover:border-slate-600 transition">
-            <div class="flex justify-between items-start mb-3">
-                <div class="flex items-center gap-3">
-                    <span class="text-3xl">🍪</span>
-                    <div>
-                        <h3 class="font-semibold">2. Симулятор cookie-баннера</h3>
-                        <p class="text-xs text-slate-400">Сделай правильный выбор</p>
-                    </div>
-                </div>
-                <div class="status-badge">
-                    <span class="text-slate-500 text-xs">🔒 Заблокировано</span>
-                </div>
-            </div>
-            <button onclick="goToBlock(2)" class="action-btn w-full bg-slate-700 text-slate-500 cursor-not-allowed font-semibold py-2 px-4 rounded-lg transition text-sm" disabled>
-                Сначала пройдите раздел 1
-            </button>
-        </div>
+<div id="block1Card" class="bg-slate-800 rounded-xl p-5 border border-slate-700 mb-4">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<span class="text-3xl">📄</span>
+<div>
+<h3 class="font-semibold">1. Лицензия, которую мы бы все подписали</h3>
+<p class="text-xs text-slate-400">Найди 3 подвоха в соглашении</p>
+</div>
+</div>
+<div class="status-badge">
+<span class="text-cyan-400 text-xs">● Доступно</span>
+</div>
+</div>
+<button onclick="goToBlock(1)" class="action-btn w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg text-sm">
+Начать
+</button>
+</div>
 
-        <!-- Раздел 3 -->
-        <div id="block3Card" class="bg-slate-800 rounded-xl p-5 border border-slate-700 mb-4 hover:border-slate-600 transition">
-            <div class="flex justify-between items-start mb-3">
-                <div class="flex items-center gap-3">
-                    <span class="text-3xl">📱</span>
-                    <div>
-                        <h3 class="font-semibold">3. Даю или не даю?</h3>
-                        <p class="text-xs text-slate-400">5 ситуаций с разрешениями</p>
-                    </div>
-                </div>
-                <div class="status-badge">
-                    <span class="text-slate-500 text-xs">🔒 Заблокировано</span>
-                </div>
-            </div>
-            <button onclick="goToBlock(3)" class="action-btn w-full bg-slate-700 text-slate-500 cursor-not-allowed font-semibold py-2 px-4 rounded-lg transition text-sm" disabled>
-                Сначала пройдите раздел 2
-            </button>
-        </div>
+<div id="block2Card" class="bg-slate-800 rounded-xl p-5 border border-slate-700 mb-4">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<span class="text-3xl">🍪</span>
+<div>
+<h3 class="font-semibold">2. Симулятор cookie-баннера</h3>
+<p class="text-xs text-slate-400">Сделай правильный выбор</p>
+</div>
+</div>
+<div class="status-badge">
+<span class="text-slate-500 text-xs">🔒 Заблокировано</span>
+</div>
+</div>
+<button onclick="goToBlock(2)" class="action-btn w-full bg-slate-700 text-slate-500 font-semibold py-2 px-4 rounded-lg text-sm" disabled>
+Сначала пройдите раздел 1
+</button>
+</div>
 
-        <!-- Чек-лист (награда) -->
-        <div id="checklistCard" class="bg-gradient-to-br from-yellow-900/20 to-orange-900/20 rounded-xl p-5 border border-yellow-700/50 mt-6 opacity-50">
-            <div class="flex items-center gap-3 mb-3">
-                <span class="text-3xl">🎁</span>
-                <div>
-                    <h3 class="font-semibold">Чек-лист «15 шагов»</h3>
-                    <p class="text-xs text-slate-400">Откроется после прохождения всех разделов</p>
-                </div>
-            </div>
-            <a href="checklist.html" class="action-btn block w-full text-center bg-slate-700 text-slate-500 cursor-not-allowed font-semibold py-2 px-4 rounded-lg transition text-sm">
-                Заблокировано
-            </a>
-        </div>
+<div id="block3Card" class="bg-slate-800 rounded-xl p-5 border border-slate-700 mb-4">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<span class="text-3xl">📱</span>
+<div>
+<h3 class="font-semibold">3. Даю или не даю?</h3>
+<p class="text-xs text-slate-400">5 ситуаций с разрешениями</p>
+</div>
+</div>
+<div class="status-badge">
+<span class="text-slate-500 text-xs">🔒 Заблокировано</span>
+</div>
+</div>
+<button onclick="goToBlock(3)" class="action-btn w-full bg-slate-700 text-slate-500 font-semibold py-2 px-4 rounded-lg text-sm" disabled>
+Сначала пройдите раздел 2
+</button>
+</div>
 
-    </div>
+<div id="checklistCard" class="bg-yellow-900/20 rounded-xl p-5 border border-yellow-700/50 mt-6 opacity-50">
+<div class="flex items-center gap-3 mb-3">
+<span class="text-3xl">🎁</span>
+<div>
+<h3 class="font-semibold">Чек-лист «15 шагов»</h3>
+<p class="text-xs text-slate-400">Откроется после прохождения всех разделов</p>
+</div>
+</div>
+<a href="checklist.html" class="action-btn block w-full text-center bg-slate-700 text-slate-500 font-semibold py-2 px-4 rounded-lg text-sm">
+Заблокировано
+</a>
+</div>
 
-    <script src="js/storage.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/dashboard.js"></script>
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
+
 </body>
 </html>
