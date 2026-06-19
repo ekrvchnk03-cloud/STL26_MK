@@ -5,25 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Раздел 2</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" 
 </head>
 <body class="bg-slate-900 min-h-screen text-white">
   <div class="container mx-auto px-4 py-6 max-w-2xl">
-
     <div class="mb-4">
       <a href="dashboard.html" class="text-slate-400 text-sm hover:text-cyan-400">← Назад в кабинет</a>
     </div>
-
     <div class="text-center mb-6">
       <div class="text-4xl mb-2">🍪</div>
       <h1 class="text-2xl font-bold mb-2">Раздел 2. Cookie-баннер</h1>
       <p class="text-slate-400 text-sm">Сделай правильный выбор</p>
     </div>
-
     <div id="alreadyDone" class="bg-green-900/30 border border-green-700/50 rounded-lg p-3 mb-4 hidden">
       <div class="text-sm">Вы уже проходили. Можно пройти снова.</div>
     </div>
-
     <div class="bg-slate-800 rounded-xl p-5 border border-slate-700 mb-6">
       <h2 class="font-semibold mb-2">Что происходит?</h2>
       <p class="text-sm text-slate-300">Вы заходите на сайт и видите типичный cookie-баннер. Какую кнопку выберете?</p>
@@ -50,7 +45,6 @@
     <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 mt-6">
       <div class="text-sm text-slate-300">💡 Подсказка: «Принять все» — самая яркая кнопка. Это и есть тёмный паттерн.</div>
     </div>
-
   </div>
 
   <!-- Модалка плохого выбора -->
@@ -59,13 +53,13 @@
       <div class="p-6 text-center">
         <div class="text-5xl mb-3">⚠️</div>
         <h3 class="text-xl font-bold mb-3">Вы попались на тёмный паттерн</h3>
-        <p class="text-sm text-slate-300 mb-4">Нажав «Принять все», вы разрешили 247 партнёрам отслеживать вас: какие сайты посещаете, что покупаете, где находитесь.</p>
+        <p class="text-sm text-slate-300 mb-4" id="badChoiceText">Нажав «Принять все», вы разрешили 247 партнёрам отслеживать вас.</p>
         <div class="bg-slate-900 rounded-lg p-3 mb-4 text-left">
           <p class="text-xs text-slate-400 mb-1">Как правильно:</p>
           <ul class="text-xs text-slate-300 space-y-1">
             <li>• Жми «Отклонить» или «Только необходимые»</li>
-            <li>• Или открывай «Настройки» и отключай лишнее</li>
-            <li>• Большая зелёная кнопка всегда подозрительна</li>
+            <li>• Или открывай «Настройки» и <strong>сними</strong> лишние галочки</li>
+            <li>• Предвключённые галочки — тоже тёмный паттерн</li>
           </ul>
         </div>
         <button onclick="tryAgain()" class="w-full bg-cyan-500 hover:bg-cyan-600 transition text-white font-semibold py-2 rounded-lg">Попробовать ещё раз</button>
@@ -79,10 +73,10 @@
       <div class="p-6 text-center">
         <div class="text-5xl mb-3">🎉</div>
         <h3 class="text-xl font-bold mb-3">Отличный выбор!</h3>
-        <p class="text-sm text-slate-300 mb-4">Вы отказались от необязательных cookies. Сайт по-прежнему будет работать, но 247 партнёров не будут вас отслеживать.</p>
+        <p class="text-sm text-slate-300 mb-4" id="goodChoiceText">Вы отказались от необязательных cookies.</p>
         <div class="bg-slate-900 rounded-lg p-3 mb-4 text-left">
           <p class="text-xs text-slate-400 mb-1">Что вы сделали правильно:</p>
-          <ul class="text-xs text-slate-300 space-y-1">
+          <ul class="text-xs text-slate-300 space-y-1" id="goodChoiceList">
             <li>• Не повелись на яркую кнопку</li>
             <li>• Нашли скрытую опцию «Отклонить»</li>
             <li>• Защитили свою приватность</li>
@@ -102,6 +96,7 @@
       <div class="p-6">
         <h3 class="text-lg font-bold mb-4">Настройки cookies</h3>
         <div class="space-y-3 mb-6">
+          <!-- Необходимые — всегда вкл -->
           <div class="bg-slate-900 rounded-lg p-3 opacity-60">
             <label class="flex items-center justify-between">
               <div>
@@ -111,22 +106,24 @@
               <input type="checkbox" checked disabled class="w-5 h-5">
             </label>
           </div>
+          <!-- Аналитика — предвключена (тёмный паттерн) -->
           <div class="bg-slate-900 rounded-lg p-3">
             <label class="flex items-center justify-between cursor-pointer">
               <div>
                 <div class="font-medium text-sm">Аналитика</div>
                 <div class="text-xs text-slate-400">Сбор статистики о посещениях</div>
               </div>
-              <input type="checkbox" id="cookieAnalytics" class="w-5 h-5 accent-cyan-500">
+              <input type="checkbox" id="cookieAnalytics" checked class="w-5 h-5 accent-cyan-500">
             </label>
           </div>
+          <!-- Реклама — предвключена (тёмный паттерн) -->
           <div class="bg-slate-900 rounded-lg p-3">
             <label class="flex items-center justify-between cursor-pointer">
               <div>
                 <div class="font-medium text-sm">Реклама</div>
                 <div class="text-xs text-slate-400">Персонализированная реклама</div>
               </div>
-              <input type="checkbox" id="cookieMarketing" class="w-5 h-5 accent-cyan-500">
+              <input type="checkbox" id="cookieMarketing" checked class="w-5 h-5 accent-cyan-500">
             </label>
           </div>
         </div>
