@@ -1,26 +1,36 @@
 // ===== Блок 2: Cookie-баннер =====
 
-// --- Утилиты модалок (локальные для block-2) ---
+// --- Безопасное завершение блока ---
+function safeCompleteBlock(n) {
+  try {
+    if (typeof completeBlock === 'function') {
+      completeBlock(n);
+    } else if (typeof Storage !== 'undefined' && typeof Storage.setBlockComplete === 'function') {
+      Storage.setBlockComplete(n);
+    } else {
+      // Fallback — сохраняем напрямую в localStorage
+      var key = 'block_' + n + '_complete';
+      localStorage.setItem(key, 'true');
+      console.log('Блок ' + n + ' завершён (fallback)');
+    }
+  } catch (e) {
+    console.warn('Не удалось сохранить прогресс:', e);
+  }
+}
+
+// --- Утилиты модалок ---
 function showBlock2Modal(id) {
   var m = document.getElementById(id);
-  if (!m) {
-    console.error('Модалка не найдена:', id);
-    return;
-  }
+  if (!m) return;
   m.classList.remove('hidden');
   m.classList.add('flex');
-  console.log('Показана модалка:', id);
 }
 
 function hideBlock2Modal(id) {
   var m = document.getElementById(id);
-  if (!m) {
-    console.error('Модалка не найдена:', id);
-    return;
-  }
+  if (!m) return;
   m.classList.add('hidden');
   m.classList.remove('flex');
-  console.log('Скрыта модалка:', id);
 }
 
 // --- Кнопка «Принять все» — ошибка ---
@@ -39,10 +49,10 @@ function handleReject() {
     '<li>• Нашли скрытую опцию «Отклонить»</li>' +
     '<li>• Защитили свою приватность</li>';
   showBlock2Modal('goodChoiceModal');
-  if (typeof completeBlock === 'function') completeBlock(2);
+  safeCompleteBlock(2);
 }
 
-// --- Кнопка «Настройки» — открыть модалку ---
+// --- Кнопка «Настройки» ---
 function handleSettings() {
   document.getElementById('cookieAnalytics').checked = true;
   document.getElementById('cookieMarketing').checked = true;
@@ -54,32 +64,27 @@ function saveSettings() {
   var analytics = document.getElementById('cookieAnalytics').checked;
   var marketing = document.getElementById('cookieMarketing').checked;
 
-  console.log('saveSettings вызван. analytics:', analytics, 'marketing:', marketing);
-
   hideBlock2Modal('settingsModal');
 
-  // Обе галочки остались включены — ошибка
+  // Обе включены — ошибка
   if (analytics && marketing) {
-    console.log('Обе включены — ошибка');
     document.getElementById('badChoiceText').textContent =
       'Вы оставили все галочки включёнными — это то же самое, что нажать «Принять все». Галочки были предвключены специально — это тёмный паттерн. Нужно было снять лишние!';
     showBlock2Modal('badChoiceModal');
     return;
   }
 
-  // Одна снята, одна нет — частичный успех
+  // Одна снята — частичный успех
   if (analytics || marketing) {
-    console.log('Одна включена — частичный успех');
     var still = analytics ? 'аналитику' : 'рекламу';
     document.getElementById('settingsResult').textContent =
       'Вы сняли часть галочек — уже неплохо! Но вы оставили ' + still + '. В идеале лучше отключать все необязательные cookies.';
     showBlock2Modal('settingsResultModal');
-    if (typeof completeBlock === 'function') completeBlock(2);
+    safeCompleteBlock(2);
     return;
   }
 
-  // Обе сняты — идеальный результат
-  console.log('Обе сняты — идеально');
+  // Обе сняты — идеально
   document.getElementById('goodChoiceText').textContent =
     'Вы открыли настройки и сняли предвключённые галочки. Сайт работает, а ваши данные защищены.';
   document.getElementById('goodChoiceList').innerHTML =
@@ -88,7 +93,7 @@ function saveSettings() {
     '<li>• Сняли ненужные разрешения</li>' +
     '<li>• Защитили свою приватность</li>';
   showBlock2Modal('goodChoiceModal');
-  if (typeof completeBlock === 'function') completeBlock(2);
+  safeCompleteBlock(2);
 }
 
 // --- Попробовать снова ---
