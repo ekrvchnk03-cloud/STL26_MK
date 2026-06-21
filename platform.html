@@ -1976,7 +1976,7 @@ function roachStep(n){
    ПОДЕЛИТЬСЯ
    ============================================================ */
 function shareResult(){
-  const text = 'Я прошёл мастер-класс «Интернет-гигиена» и больше не подписываю то, что не читаю. А ты?';
+  const text = 'Я прошёл мастер-класс «Интернет-гигиена» и больше не подписываю то, что не читаю. А ты? https://vk.com/away.php?to=https%3A%2F%2Fmy-masterclass-site.website.yandexcloud.net%2F&utf=1';
   if (navigator.share){ navigator.share({ title:'Интернет-гигиена', text }).catch(()=>{}); }
   else if (navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(text).then(()=>alert('Скопировано в буфер обмена!')).catch(()=>alert(text));
